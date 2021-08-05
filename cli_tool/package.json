@@ -1,0 +1,30 @@
+{
+  "name": "todos-cli",
+  "version": "1.0.0",
+  "description": "A CLI to manage a TODO list",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "MIT"
+  ],
+  "author": "Shahed Nasser",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "commander": "^7.2.0",
+    "conf": "^9.0.2",
+    "create-file": "^1.0.1",
+    "i": "^0.3.6",
+    "npm": "^7.20.3",
+    "prompt": "^1.1.0",
+    "short-uuid": "^4.2.0",
+    "uniqid": "^5.3.0",
+    "zip-a-folder": "^1.1.0"
+  },
+  "bin": {
+    "zeta-quick": "index.js"
+  }
+}
