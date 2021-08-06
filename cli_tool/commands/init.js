@@ -4,15 +4,22 @@ const path = require('path');
 const init = () => {
 
     try {
-        let file_data = fs.readFileSync(`${process.cwd()}/zeta_init.json`, { encoding: "utf-8" })
-        file_data = JSON.parse(file_data)
-        if (!file_data.userId) {
+        let login_data = fs.readFileSync(path.join(__dirname ,"../zeta_init.json"), { encoding: "utf-8" })
+        login_data = JSON.parse(login_data)
+        if (!login_data.userId) {
             console.log("Please login first using command : zeta-quick login")
             return;
         }
-        if (file_data.projectId) {
-            console.log("Project already exist")
-            return;
+        if (fs.existsSync(process.cwd()+"/zeta_init.json")) {
+            try {
+                let data = JSON.parse(fs.readFileSync(process.cwd()+"/zeta_init.json",{encoding:"utf-8"}))
+                if(data.projectId){
+                    console.log("Project already exist")
+                    return;
+                }
+            } catch (error) {
+                
+            }
         }
         prompt.get([{
             name: 'title',
@@ -43,17 +50,21 @@ const init = () => {
                 console.log("Error! please try again!")
                 return;
             }
-            file_data.title = result.title;
-            file_data.description = result.description
-            file_data.author = result.author
-            file_data.logo = result.logo
-            file_data.verson = result.verson
-            file_data.projectId = require('short-uuid').generate();
+            let file_data = {
+                title:result.title,
+                description : result.description,
+                author : result.author,
+                logo : result.logo,
+                verson :result.verson,
+                projId : require('short-uuid').generate(),
+                techStack:"randomTechStack"
+            }
             fs.writeFileSync(process.cwd() + "/zeta_init.json", JSON.stringify(file_data))
             fs.copyFileSync(path.join(__dirname, "../README.md"), `${process.cwd()}/zeta_readme.md`)
             console.log("Project Created Successful!")
         });
     } catch (error) {
+        console.log(error)
         console.log("Please login first using command : zeta-quick login")
         return;
     }

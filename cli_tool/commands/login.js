@@ -1,6 +1,7 @@
 let prompt = require('prompt');
 let axios = require('axios')
-let fs = require("fs")
+let fs = require("fs");
+const path = require('path');
 
 const login = () => {
     prompt.get([{
@@ -17,32 +18,21 @@ const login = () => {
             email: result.email,
             password: result.password
         }).then((res) => {
-            if (res.data.error) {
-                console.log(res.data.error);
-                return;
-            }
             try {
-                let data = fs.readFileSync(process.cwd() + "/zeta_init.json", { encoding: "utf-8" })
-                try {
-                    data = JSON.parse(data)
-                    data.userId = res.data.success
-                    fs.writeFileSync(process.cwd() + "/zeta_init.json", JSON.stringify(data))
-                    console.log("Login Successful!")
-                } catch (error) {
-                    data = {
-                        userId: res.data.success
-                    }
-                    fs.writeFileSync(process.cwd() + "/zeta_init.json", JSON.stringify(data))
-                    console.log("Login Successful!")
+                if (res.data.error) {
+                    console.log(res.data.error);
+                    return;
                 }
-            } catch (error) {
                 let data = {
                     userId: res.data.success
                 }
-                fs.writeFileSync(process.cwd() + "/zeta_init.json", JSON.stringify(data))
-                console.log("Login Successful!")
+                fs.writeFileSync(path.join(__dirname ,"../zeta_init.json"), JSON.stringify(data))
+                console.log("Login Successful")
+
+            } catch (error) {
+                console.log("Error Login User!")
             }
-            
+
         }).catch((err) => {
             console.log("Error Please Try again!");
 

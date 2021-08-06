@@ -10,7 +10,8 @@ const Proj = require("./models/proj")
 const Users = require("./models/user")
 
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const proj = require("./models/proj");
 mongoose.connect(require("./config").dbUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (err) => { console.log(err) })
 
 
@@ -42,9 +43,10 @@ app.post("/login", (req, res) => {
     }
     Users.findOne({ email }).then((doc) => {
         if (doc == null) {
-            let _user = new Users({ email, password })
+            let userId = require('short-uuid').generate()
+            let _user = new Users({ email, password, userId })
             _user.save().then((r) => {
-                res.json({ success: cryptr.encrypt(`${email};&&;${password}`) })
+                res.json({ success: userId })
             }).catch((err) => {
                 console.log(err)
                 res.json({ error: "Error Creating new User" })
@@ -56,7 +58,7 @@ app.post("/login", (req, res) => {
                 return;
             }
             else {
-                res.json({ success: cryptr.encrypt(`${email};&&;${password}`) })
+                res.json({ success: doc.userId })
             }
         }
     }).catch((err) => console.log(err))
@@ -64,15 +66,66 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/submit-proj", (req, res) => {
+    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack } = req.body;
+    Proj.findOne({ userId, projId }).then((doc) => {
+        if (doc !== null) {
+            res.json({ error: "Project Already Exist!" })
+            return;
+        }
+        Users.findOne({ userId }).then((user) => {
+            if (user === null) {
+                res.json({ error: "User not loggedin!" })
+                return;
+            }
+
+            let _newProj = new Proj({ zipUrl, userId, projId, readme, logo, title, description, author, techStack })
+            _newProj.save().then((r) => {
+                res.json({ success: "Project Published" })
+                return;
+            }).catch((err) => {
+                console.log(err)
+                res.json({ error: "Server Error!" })
+                return
+
+            })
+        }).catch((err) => {
+            console.log(err)
+            res.json({ error: "Server Error!" })
+            return
+
+        })
+    }).catch((err) => {
+        console.log(err)
+        res.json({ error: "Server Error!" })
+        return
+
+    })
 
 })
 
 app.post("/update-proj", (req, res) => {
-
+    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack } = req.body;
+    Proj.findOne({ userId, projId }).then((doc) => {
+        if (doc === null) {
+            res.json({ error: "Project does not Exist!" })
+            return;
+        }
+        Proj.findOneAndUpdate({ projId }, { zipUrl, userId, projId, readme, logo, title, description, author, techStack }).then((user) => {
+            res.json({success:"Project Updated"})
+        }).catch((err) => {
+            console.log(err)
+            res.json({ error: "Server Error!" })
+            return;
+        })
+    }).catch((err) =>{
+        console.log(err)
+        res.json({ error: "Server Error!" })
+        return;
+    })
 })
 
 app.get("/all-projs", (req, res) => {
-
+    Proj.find({}).then((doc) => res.json({ success: doc })).catch((err) => res.json({ error: "Server error!" }))
 })
 
 

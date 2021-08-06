@@ -6,6 +6,10 @@ var proj = new Schema({
         required: true
 
     },
+    userId:{
+        type: String,
+        required: true 
+    },
     techStack: {
         type: String,
         required: true
@@ -22,7 +26,15 @@ var proj = new Schema({
         type: String,
         required: true
     },
-    readMe:{
+    readme:{
+        type:String,
+        required:true
+    },
+    title:{
+        type:String,
+        required:true
+    },
+    zipUrl:{
         type:String,
         required:true
     },
