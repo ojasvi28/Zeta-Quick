@@ -1,7 +1,7 @@
 {
-  "name": "todos-cli",
+  "name": "zeta-cli",
   "version": "1.0.0",
-  "description": "A CLI to manage a TODO list",
+  "description": "A CLI to manage publish and update 1 click apps",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -9,11 +9,12 @@
   "keywords": [
     "MIT"
   ],
-  "author": "Shahed Nasser",
+  "author": "Sarthak Sadh",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
+    "cloudinary": "^1.26.3",
     "commander": "^7.2.0",
     "conf": "^9.0.2",
     "create-file": "^1.0.1",

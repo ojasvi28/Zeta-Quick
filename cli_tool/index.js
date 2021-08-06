@@ -3,6 +3,7 @@ const { program } = require('commander')
 const login = require("./commands/login")
 const init = require("./commands/init")
 const publish =require("./commands/publish")
+const update =require("./commands/update")
 program
     .command('login')
     .description('Login to zeta via cli')
@@ -21,7 +22,7 @@ program
 
 program
     .command('update')
-    .description('Create a new project')
-    .action(()=>publish())
+    .description('Update existing project')
+    .action(()=>update())
 
 program.parse()
