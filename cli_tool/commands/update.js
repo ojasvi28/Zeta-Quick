@@ -31,8 +31,7 @@ const update = async () => {
         console.log("Code compressed")
         console.log("Uploading Source code....")
         let upload_res = await cloudinary.uploader.upload( __dirname + "/zeta_source_code.zip",{ resource_type: "raw" })
-        // let upload_res = await cloudinary.uploader.upload( path.j,{ resource_type: "raw" })
-        console.log("source code uploaded")
+        console.log("Source code uploaded")
         let readme_data = fs.readFileSync(process.cwd() + "/zeta_readme.md", { encoding: "utf8" })
         let request_data = {
             ...file_data,
@@ -40,6 +39,7 @@ const update = async () => {
             readme: readme_data,
             zipUrl: upload_res.secure_url,
         }
+        console.log("Upadating project")
         axios.post(`${require("../config").BASE_URL}/update-proj`,request_data).then((res) => {
             try {
                 if (res.data.error) {

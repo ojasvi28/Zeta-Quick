@@ -2,8 +2,10 @@ let prompt = require('prompt');
 let axios = require('axios')
 let fs = require("fs");
 const path = require('path');
+const loading =  require('loading-cli');
 
 const login = () => {
+    let load = ""
     prompt.get([{
         name: 'email',
         required: true
@@ -14,6 +16,15 @@ const login = () => {
             return true;
         }
     }], (err, result) => {
+
+        load = loading({
+        "text":"Verifying details.....",
+        "color":"yellow",
+        "interval":400,
+        "stream": process.stdout,
+        "frames":["←", "↖", "↑", "↗", "→", "↘", "↓", "↙"]
+      }).start()
+
         axios.post(`${require("../config").BASE_URL}/login`, {
             email: result.email,
             password: result.password
@@ -36,7 +47,7 @@ const login = () => {
         }).catch((err) => {
             console.log("Error Please Try again!");
 
-        })
+        }).finally(()=>load.stop())
     });
 }
 
