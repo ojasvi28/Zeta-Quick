@@ -124,6 +124,27 @@ app.post("/update-proj", (req, res) => {
     })
 })
 
+app.get("/download/:projId",(req,res)=>{
+    let {projId}= req.params
+    console.log(projId)
+    Proj.findOne({projId:projId}).then((doc)=>{
+        console.log(doc)
+        if(doc===null){
+            res.send("File not found!")
+            return;
+        }
+        Proj.findByIdAndUpdate({_id:doc._id},{totalDownloads:doc.totalDownloads+1}).then((d)=>{
+            res.redirect(doc.zipUrl)
+        }).catch((err)=>{
+            res.send("Server Error!")
+            return;
+        })
+    }).catch((err)=>{
+        res.send("Server Error!")
+    })
+    
+})
+
 app.get("/all-projs", (req, res) => {
     Proj.find({}).then((doc) => res.json({ success: doc })).catch((err) => res.json({ error: "Server error!" }))
 })

@@ -1,59 +1,27 @@
-# TODOS-CLI
+# Project Ttitle
 
-A CLI tool for a tutorial for LogRocket on how to create a CLI tool using Node.js.
+A short project description
+
+### Zeta Api Used
+
+| Name      | Version |
+| ----------- | ----------- |
+| Card Api      | 2.0       |
+| Upi Api   | 3.0        |
+
 
 ## Installation
 
-Clone the repository:
-
-```
-git clone https://github.com/shahednasser/todos-cli.git
-```
-
-Install the dependencies:
-
-```
-npm i
-```
-
-Install the package globally on your machine:
-
-```
-npm i -g
-```
+1. Download the zip file:
+2. Extract the zip in your project root directory
 
 ## Usage
 
-1. To view the TODO list:
-
+```javascript
+// import all the code using the following command 
+// provide the zeta api keys in the config file
+require('zeta-sample').config()
+let example = require("zeta-sample/example").run()
+console.log("example running")
+example.stop()
 ```
-todos list
-```
-
-2. To add a TODO task:
-
-```
-todos add <task>
-```
-
-For example:
-
-```
-todos add "Make Dinner"
-```
-
-If the task text has spaces either put quotations around it or escape the spaces. If it doesn't, quotations are not necessary.
-
-3. Mark tasks as done:
-
-```
-todos mark-done
-```
-
-This will mark all tasks as done. To mark specific tasks as done by their indices, run:
-
-```
-todos mark-done -t 1 2
-```
-
-where `-t, --tasks` can take at least one value. Values are separated by spaces.

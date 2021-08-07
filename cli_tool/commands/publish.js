@@ -21,7 +21,6 @@ const publish = async () => {
                 return;
             }
         } catch (error) {
-            console.log(error)
             console.log("Please login first using command : zeta-quick login")
             return;
         }
@@ -57,7 +56,6 @@ const publish = async () => {
 
         })
     } catch (error) {
-        console.log(error)
         console.log("Make sure proj exist!")
         return;
     }
