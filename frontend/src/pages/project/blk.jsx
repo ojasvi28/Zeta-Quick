@@ -29,14 +29,7 @@ class Project extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        {/* <div className="col-8">
-                        <ReactMarkdown># Hello, *world*!</ReactMarkdown>
-                        </div>
-                        <div className="col-4">
-                            <button className="btn btn-primary">Download Zip</button>
-                            <p className="mt-2 text-muted">Total Downloads: 750</p>
-                        </div>
-                         */}
+               
                     </div>
                 </div>
 
