@@ -45,6 +45,10 @@ var proj = new Schema({
     totalDownloads:{
         type:Number,
         default:0
+    },
+    version:{
+        type:String,
+        default:"1.0"
     }
 }, { timestamps: true });
 module.exports = mongoose.model('Proj', proj);

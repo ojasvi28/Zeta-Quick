@@ -6,20 +6,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            allProjects: [{
-                logo: 'https://ultimatecourses.com/assets/category/node-f0b53b22caed9564d07fb50e1fb47a0ea523d3d09047bb727d3cf366be0df824.svg',
-                title: 'Card App ',
-                description: "A simple Credit Card app in Nodejs"
-            }, {
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png',
-                title: 'Upi App',
-                description: "Complete Upi app in react.js"
-            },  {
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png',
-                title: 'Upi App',
-                description: "Complete Upi app in react.js"
-            }],
-
+            allProjects:this.props.allProjects || [],
             filterProjs: this.props.allProjects || []
 
         }
@@ -72,8 +59,8 @@ class Home extends React.Component {
                                     <div class="card-content">
                                         <h2>{value.title}<small>{value.description}</small></h2>
                                         <div class="icon-block">
-                                            <a href={"/download/" + value.projId}><i className="i fa fa-download"></i></a>
-                                            <a href={"/project/" + value.projId}><i className="i fa fa-eye"></i></a>
+                                            <a href={"download/" + value.projId}><i className="i fa fa-download"></i></a>
+                                            <a href={"#/project/" + value.projId}><i className="i fa fa-eye"></i></a>
 
                                         </div>
                                     </div>

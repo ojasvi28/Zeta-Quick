@@ -43,7 +43,7 @@ const publish = async () => {
             userId:login_data.userId, 
             readme: readme_data,
             zipUrl: upload_res.secure_url,
-            fileSize
+            fileSize:fileSize
         }
         console.log(fileSize)
         console.log("Publishing project...")

@@ -20,36 +20,18 @@ import Project from './pages/project/blk';
 class App extends React.Component {
   state = {
     allProjects: [],
-    isInitialLoading: false,
+    isInitialLoading: true,
   }
 
   componentDidMount() {
 
-    // fetchData("/api/checkLogin").then((res) => {
-    //   if (res.status === "ok") {
-    //     this.setState({ userInfo: res.userInfo }, () => {
-    //       fetchData("/api/allServerDetails").then((res) => {
-    //         console.log(res.serverDetails)
-    //         res.serverDetails.forEach((server) => {
-    //           server.logs.sort((a, b) => (a.date_time > b.date_time) ? -1 : 1)
-    //         })
-    //         this.setState({ allServers: res.serverDetails }, () => {
-    //         })
-    //       }).catch((err) => {
-    //         console.log(err)
-    //         toast.error("Server Error")
-    //       }).finally(() => this.setState({ isInitialLoading: false }))
-
-    //     })
-    //   }
-    //   else {
-    //     this.setState({ isInitialLoading: false })
-    //   }
-
-    // }).catch((err) => {
-    //   toast.error("Server Error")
-    //   console.log(JSON.stringify(err))
-    // })
+    fetchData("/all-projs").then((res) => {
+      console.log(res)
+      this.setState({allProjects:res.success})
+    }).catch((err) => {
+      toast.error("Server Error")
+      console.log(JSON.stringify(err))
+    }).finally(()=>this.setState({isInitialLoading:false}))
   }
 
   render() {

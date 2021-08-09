@@ -1,5 +1,6 @@
 import axios from "axios"
-const BASE_URL = process.env.BASE_URL || ""
+// const BASE_URL = process.env.BASE_URL || ""
+const BASE_URL = "http://localhost:7000"
 const fetchData = (URL, DATA = {}, METHOD = 'GET') => {
     return new Promise((resolve, reject) => {
         METHOD == "POST" ? axios.post(BASE_URL + URL, DATA, {
