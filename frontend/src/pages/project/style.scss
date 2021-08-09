@@ -1,3 +1,38 @@
-.proj{
-    // background-color: gray;
+@import "../../App.scss";
+.proj {
+  .row {
+    margin-left: -5%;
+    margin-right: -5%;
+  }
+  .breadcrumb {
+    background-color: inherit;
+  }
+  .logo-col {
+    display: flex;
+    justify-content: center;
+  }
+  .logo {
+    font-size: 30;
+  }
+  .title {
+    font-weight: 400;
+  }
+  .authorName {
+    font-weight: 100;
+  }
+  .techStack {
+    margin-left: 2%;
+  }
+  .right-menu {
+    justify-content: center;
+  }
+  .left-menu {
+      padding-right: 2%;
+  }
+  .download-row {
+    justify-content: center;
+  }
+  hr{
+      border: 1px solid $primary;
+  }
 }
