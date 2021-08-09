@@ -38,6 +38,10 @@ var proj = new Schema({
         type:String,
         required:true
     },
+    fileSize:{
+        type:String,
+        required:true,
+    },
     totalDownloads:{
         type:Number,
         default:0

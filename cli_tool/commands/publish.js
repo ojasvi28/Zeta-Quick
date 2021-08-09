@@ -27,6 +27,12 @@ const publish = async () => {
         let file_data = JSON.parse(fs.readFileSync(process.cwd() + "/zeta_init.json", { encoding: "utf-8" }))
         console.log("Compressig source code......")
         await zip(process.cwd(), __dirname + "/zeta_source_code.zip");
+        let stats = fs.statSync(__dirname + "/zeta_source_code.zip")
+        let fileSizeInBytes = stats.size;
+        let inKb = fileSizeInBytes / 1024
+        let inMb = inKb/1024
+        let fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
+
         console.log("Code compressed")
         console.log("Uploading Source code....")
         let upload_res = await cloudinary.uploader.upload( __dirname + "/zeta_source_code.zip",{ resource_type: "raw" })
@@ -37,7 +43,9 @@ const publish = async () => {
             userId:login_data.userId, 
             readme: readme_data,
             zipUrl: upload_res.secure_url,
+            fileSize
         }
+        console.log(fileSize)
         console.log("Publishing project...")
         axios.post(`${require("../config").BASE_URL}/submit-proj`,request_data).then((res) => {
             try {
