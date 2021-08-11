@@ -34,7 +34,6 @@ const update = async () => {
         console.log("Uploading Source code....")
         let stats = fs.statSync(__dirname + "/zeta_source_code.zip")
         let fileSizeInBytes = stats.size;
-        let fileSizeInBytes = stats.size;
         let inKb = fileSizeInBytes / 1024
         
         if(inKb > (1024*5)){

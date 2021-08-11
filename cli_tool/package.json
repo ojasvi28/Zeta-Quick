@@ -1,6 +1,6 @@
 {
-  "name": "zeta-cli",
-  "version": "1.0.0",
+  "name": "zeta-quick",
+  "version": "1.0.2",
   "description": "A CLI to manage publish and update 1 click apps",
   "main": "index.js",
   "scripts": {

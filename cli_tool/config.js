@@ -1,5 +1,5 @@
 module.exports = {
-    BASE_URL: "http://zeta-marketplace.herokuapp.com",
+    BASE_URL: "https://zeta-marketplace.herokuapp.com",
     // BASE_URL: "http://localhost:7000",
     cloud_name: 'ssadh',
     api_key: '187384484318298',

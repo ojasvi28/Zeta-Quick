@@ -64,7 +64,7 @@ const init = () => {
                     techStack: tech
                 }
                 fs.writeFileSync(process.cwd() + "/zeta_init.json", JSON.stringify(file_data))
-                fs.copyFileSync(path.join(__dirname, "../README.md"), `${process.cwd()}/zeta_readme.md`)
+                fs.copyFileSync(path.join(__dirname, "../zeta_readme.md"), `${process.cwd()}/zeta_readme.md`)
                 console.log("Project Created Successful!")
             });
 
