@@ -39,6 +39,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/commands/zeta_source_code.zip
 
 # System Files
 .DS_Store

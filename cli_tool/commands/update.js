@@ -5,7 +5,7 @@ let axios = require('axios')
 const path = require('path');
 var markdown = require( "markdown" ).markdown;
 var readMarkdown = require('read-markdown')
-let { cloud_name, api_key, api_secret } = require("../config")
+let { cloud_name, api_key, api_secret,BASE_URL } = require("../config")
 cloudinary.config({
     cloud_name,
     api_key,
@@ -55,6 +55,7 @@ const update = async () => {
                     return;
                 }
                 console.log(res.data.success)
+                console.log(`${BASE_URL}/#/project/${request_data.projId}`)
 
             } catch (error) {
                 console.log("Server Error")

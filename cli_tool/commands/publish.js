@@ -3,7 +3,7 @@ const zip = require('zip-a-folder').zip;
 var cloudinary = require('cloudinary').v2;
 let axios = require('axios')
 const path = require('path');
-let { cloud_name, api_key, api_secret } = require("../config")
+let { cloud_name, api_key, api_secret, BASE_URL } = require("../config")
 cloudinary.config({
     cloud_name,
     api_key,
@@ -54,6 +54,7 @@ const publish = async () => {
                     return;
                 }
                 console.log(res.data.success)
+                console.log(`${BASE_URL}/#/project/${request_data.projId}`)
 
             } catch (error) {
                 console.log("Server Error")
