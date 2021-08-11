@@ -34,12 +34,20 @@ const update = async () => {
         console.log("Uploading Source code....")
         let stats = fs.statSync(__dirname + "/zeta_source_code.zip")
         let fileSizeInBytes = stats.size;
+        let fileSizeInBytes = stats.size;
         let inKb = fileSizeInBytes / 1024
+        
         if(inKb > (1024*5)){
             console.log("File too large maximum limit is 5mb")
             return
         }
-        let fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
+        let fileSize = "0Kb"
+        try {
+            fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
+        } catch (error) {
+            
+        }
+        
         let upload_res = await cloudinary.uploader.upload( __dirname + "/zeta_source_code.zip",{ resource_type: "raw" })
         console.log("Source code uploaded")
         let readme_data = fs.readFileSync(process.cwd() + "/zeta_readme.md", { encoding: "utf8" })

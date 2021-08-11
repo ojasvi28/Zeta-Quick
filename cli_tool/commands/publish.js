@@ -34,8 +34,13 @@ const publish = async () => {
             console.log("File too large maximum limit is 5mb")
             return
         }
-        let fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
-
+        let fileSize = "0Kb"
+        try {
+            fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
+        } catch (error) {
+            
+        }
+        
         console.log("Code compressed")
         console.log("Uploading Source code....")
         let upload_res = await cloudinary.uploader.upload( __dirname + "/zeta_source_code.zip",{ resource_type: "raw" })
