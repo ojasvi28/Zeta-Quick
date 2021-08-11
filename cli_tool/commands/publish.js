@@ -30,7 +30,10 @@ const publish = async () => {
         let stats = fs.statSync(__dirname + "/zeta_source_code.zip")
         let fileSizeInBytes = stats.size;
         let inKb = fileSizeInBytes / 1024
-        let inMb = inKb/1024
+        if(inKb > (1024*5)){
+            console.log("File too large maximum limit is 5mb")
+            return
+        }
         let fileSize = `${Number(inKb.toString().split(".")[0])}Kb`
 
         console.log("Code compressed")
