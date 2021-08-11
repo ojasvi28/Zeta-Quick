@@ -1,5 +1,6 @@
 import React from 'react';
 import { findRenderedDOMComponentWithClass } from 'react-dom/test-utils';
+import { BASE_URL } from '../../modules';
 import './style.css'
 class Home extends React.Component {
 
@@ -59,7 +60,7 @@ class Home extends React.Component {
                                     <div class="card-content">
                                         <h2>{value.title}<small>{value.description}</small></h2>
                                         <div class="icon-block">
-                                            <a href={"download/" + value.projId}><i className="i fa fa-download"></i></a>
+                                            <a href={BASE_URL+"/download/" + value.projId}><i className="i fa fa-download"></i></a>
                                             <a href={"#/project/" + value.projId}><i className="i fa fa-eye"></i></a>
 
                                         </div>
