@@ -5,6 +5,7 @@ var cors = require('cors')
 const port = process.env.PORT || 7000;
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr(require("./config").secretCode);
+const path = require("path")
 
 const Proj = require("./models/proj")
 const Users = require("./models/user")
@@ -19,13 +20,12 @@ mongoose.connect(require("./config").dbUrl, { useNewUrlParser: true, useCreateIn
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-    credentials: true
 }));
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
-
+app.use('/',express.static(path.join(__dirname,"/build")));
 
 app.post("/login", (req, res) => {
     let { email, password } = req.body;
