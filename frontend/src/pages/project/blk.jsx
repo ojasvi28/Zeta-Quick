@@ -36,7 +36,7 @@ class Project extends React.Component {
               </div>
               <div className="row">
                 <div className="col-3 logo-col">
-                  <img src = {currProj.logo}  className="fab fa-node-js text-info fa-6x"></img>
+                  <img src = {currProj.logo}  className="fab fa-node-js text-info fa-6x img-fluid w-100 h-100"></img>
                 </div>
                 <div className="col-9 mt-2">
                   <div className="row">
