@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import ReactMarkdown from "react-markdown";
 import { BASE_URL } from "../../modules";
+import moment from 'moment'
 class Project extends React.Component {
   constructor(props) {
     super(props);
@@ -79,8 +80,12 @@ class Project extends React.Component {
                       <td>{currProj.fileSize}</td>
                     </tr>
                     <tr>
-                      <td>Last Published</td>
-                      <td>{currProj.updatedAt}</td>
+                      <td>Last Updated</td>
+                      <td>{moment(currProj.updatedAt).fromNow()}</td>
+                    </tr>
+                    <tr>
+                      <td>Published</td>
+                      <td>{moment(currProj.createdAt).fromNow()}</td>
                     </tr>
                   </tbody>
                 </table>

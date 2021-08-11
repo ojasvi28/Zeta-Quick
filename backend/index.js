@@ -66,7 +66,7 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/submit-proj", (req, res) => {
-    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack } = req.body;
+    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack,fileSize,version } = req.body;
     Proj.findOne({ userId, projId }).then((doc) => {
         if (doc !== null) {
             res.json({ error: "Project Already Exist!" })
@@ -78,7 +78,7 @@ app.post("/submit-proj", (req, res) => {
                 return;
             }
 
-            let _newProj = new Proj({ zipUrl, userId, projId, readme, logo, title, description, author, techStack })
+            let _newProj = new Proj({ zipUrl, userId, projId, readme, logo, title, description, author, techStack,fileSize,version })
             _newProj.save().then((r) => {
                 res.json({ success: "Project Published" })
                 return;
@@ -104,13 +104,13 @@ app.post("/submit-proj", (req, res) => {
 })
 
 app.post("/update-proj", (req, res) => {
-    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack } = req.body;
+    const { zipUrl, userId, projId, readme, logo, title, description, author, techStack,fileSize,version } = req.body;
     Proj.findOne({ userId, projId }).then((doc) => {
         if (doc === null) {
             res.json({ error: "Project does not Exist!" })
             return;
         }
-        Proj.findOneAndUpdate({ projId }, { zipUrl, userId, projId, readme, logo, title, description, author, techStack }).then((user) => {
+        Proj.findOneAndUpdate({ projId }, { zipUrl, userId, projId, readme, logo, title, description, author, techStack,fileSize,version }).then((user) => {
             res.json({success:"Project Updated"})
         }).catch((err) => {
             console.log(err)

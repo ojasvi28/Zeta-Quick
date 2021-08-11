@@ -59,7 +59,7 @@ const init = () => {
                     description: result.description,
                     author: result.author,
                     logo: require('../config').techStack[tech],
-                    verson: result.verson,
+                    verson: result.version,
                     projId: require('short-uuid').generate(),
                     techStack: tech
                 }
